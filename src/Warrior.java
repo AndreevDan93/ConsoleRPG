@@ -1,32 +1,37 @@
+import java.util.Random;
+
+/*
+класс должен обладать всеми свойствами героя при создании воин должен обладать следующими характеристиками:
+здоровье - 500, мана - 10, сила - 100, ловкость - 50, интеллект - 1, опыт 0, урон - 150.
+При атаке герой наносит цели урон и получает урон в ответ от цели, действия повторяются пока кто то не победит.
+        Уже мертвая цель - урона герою не наносит!!!
+        */
 class Warrior extends Hero {
     public Warrior() {
-        hp = 500;
-        mana = 10;
-        s = 100;
-        a = 50;
-        i = 1;
-        exp = 0;
-        damage = 150;//базовые значение
-        int rage = 0;
+        this.hp = 500;
+        this.mana = 10;
+        this.s = 100;
+        this.a = 50;
+        this.i = 1;
+        this.exp = 0;
+        this.damage = 150;
     }
 
 
     @Override
     public void attack(Enemy enemy) {
-        if (enemy.hp > 0 && this.hp > 0) {
-            enemy.hp -= this.damage;
-        }
+        if (enemy.hp > 0 && this.hp > 0) enemy.hp -= this.damage;
+
         if (this.hp > 0 && enemy.hp <= 0) {
             this.exp += enemy.exp;
             isLvlUP();
         }
     }
 
+
     @Override
     public void defense(Enemy enemy) {
-        if (enemy.hp > 0 && this.hp > 0) {
-            if (enemy.hp > 0) this.hp -= enemy.damage;
-        }
+        if (enemy.hp > 0 && this.hp > 0) this.hp -= enemy.damage;
         if (this.hp <= 0) System.out.println("Ваш герой был убит");
 
     }
@@ -40,15 +45,18 @@ class Warrior extends Hero {
             this.s += 10;
             this.a += 10;
             this.i += 10;
+            this.mana += 10;
         }
 
     }
+    //В случае победы герой получает опыт цели, каждые 500 единиц опыта герой получает новый уровень.
+    //Новый уровень дает +10 ко всем характеристикам, +200 здоровья и +20 урона.
 
     @Override
     public void openItem(Item item) {
         boolean flag = true;
-        int r = (int) (Math.random() * 100);
-        if (r <= 50) this.items.add(item);
+        Random r = new Random();
+        if (r.nextInt(10) >= 5) this.items.add(item);
         else flag = false;
 
         if (flag) {
@@ -61,18 +69,10 @@ class Warrior extends Hero {
                     } else break;
                 }
             }
-        }else return;
+        } else return;
 
     }
+    //Если воин имеет предмет 1 типа, к его урону добавляется 100.
 
-    /*
-класс должен обладать всеми свойствами героя при создании воин должен обладать следующими характеристиками:
- здоровье - 500, мана - 10, сила - 100, ловкость - 50, интеллект - 1, опыт 0, урон - 150.
- При атаке герой наносит цели урон и получает урон в ответ от цели, действия повторяются пока кто то не победит.
- В случае победы герой получает опыт цели, каждые 500 единиц опыта герой получает новый уровень.
- Новый уровень дает +10 ко всем характеристикам, +200 здоровья и +20 урона.
- Если воин имеет предмет 1 типа, к его урону добавляется 100.
-            Уже мертвая цель - урона герою не наносит!!!
-            */
 }
 

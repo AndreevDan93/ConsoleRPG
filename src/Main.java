@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Hero myHero = new Warrior();
-        //    Hero myHero = new Archer();
+        //Hero myHero = new Warrior();
+            Hero myHero = new Archer();
         //    Hero myHero = new Magician();
 
         ArrayList<Enemy> enemies = new ArrayList<>();

@@ -1,19 +1,19 @@
+import java.util.Random;
+
 class Archer extends Hero {
     public Archer() {
-        hp = 500;
-        mana = 10;
-        s = 100;
-        a = 50;
-        i = 1;
-        exp = 0;
-        damage = 150;//базовые значение
+        this.hp = 200;
+        this.mana = 50;
+        this.s = 20;
+        this.a = 150;
+        this.i = 30;
+        this.exp = 0;
+        this.damage = 200;
     } //базовые значение
 
     @Override
     public void attack(Enemy enemy) {
-        if (enemy.hp > 0 && this.hp > 0) {
-            enemy.hp -= this.damage;
-        }
+        if (enemy.hp > 0 && this.hp > 0) enemy.hp -= this.damage;
         if (this.hp > 0 && enemy.hp <= 0) {
             this.exp += enemy.exp;
             isLvlUP();
@@ -22,11 +22,11 @@ class Archer extends Hero {
 
     @Override
     public void defense(Enemy enemy) {
-        if (enemy.hp > 0 && this.hp > 0) {
-            int r = (int) (Math.random() * 100);
-            if (enemy.hp > 0 && r >= 30) this.hp -= enemy.damage;
-        }
-        if (this.hp <= 0) System.out.println("Ваш герой был убит");
+        Random R = new Random();
+
+        if(enemy.hp > 0  && R.nextInt() < 7) this.hp -= enemy.damage;
+        if(this.hp <= 0) System.out.print("Ваш герой был убит");
+
 
     }
 
@@ -39,16 +39,13 @@ class Archer extends Hero {
             this.s += 10;
             this.a += 40;
             this.i += 10;
+            this.mana +=10;
         }
     }
 
     @Override
     public void openItem(Item item) {
         this.items.add(item);
-    }
-
-    public void openChess(Chess chess){
-
     }
     /*
                 класс должен обладать всеми свойствами героя при создании лучник должен обладать следующими характеристиками:

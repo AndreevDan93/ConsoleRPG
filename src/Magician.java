@@ -1,16 +1,15 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 class Magician extends Hero {
     public Magician() {
-        hp = 100;
-        mana = 5000;
-        s = 5;
-        a = 30;
-        i = 300;
-        exp = 0;
-        damage = 40;
-        int fireSchool = 1;
-        int watterSchool = 1;
+        this.hp = 100;
+        this.mana = 5000;
+        this.s = 5;
+        this.a = 30;
+        this.i = 300;
+        this.exp = 0;
+        this.damage = 40;
         //базовые значение
     }
 
@@ -80,7 +79,8 @@ class Magician extends Hero {
 
     @Override
     public void openItem(Item item) {
-        super.openItem(item);
+        Random r = new Random();
+        if (r.nextInt(10) >= 5) this.items.add(item);
         if(items.contains(item)) eduCast(item);
     }
 

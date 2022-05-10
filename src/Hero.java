@@ -26,22 +26,14 @@ abstract class Hero {
         y = yy;
     }
 
-    public abstract void attack(Enemy enemy); // этот метод должнен быть определен в классах наследниках
+    public abstract void attack(Enemy enemy); // этот метод должен быть определен в классах наследниках
 
-    public abstract void defense(Enemy enemy);// этот метод должнен быть определен в классах наследниках
+    public abstract void defense(Enemy enemy);// этот метод должен быть определен в классах наследниках
 
     public abstract void isLvlUP();
 
-    public void openItem(Item item) {
-        boolean flag = true;
-        int r = (int) (Math.random() * 100);
-        if (r <= 50) this.items.add(item);
-        else flag = false;
+    public  void openItem(Item item) {}
 
 
-
-        // метод должен добавлять предмет в список с вероятностью 50 %
-        // для осуществления вероятностных процессов можно использовать случайное число от 0 до 100.
-    }
 
 }
